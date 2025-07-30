@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
+    "@types/react-linkify": "^1.0.4"
+  },
+  "dependencies": {
+    "multer": "^2.0.1",
+    "pdf-parse": "^1.1.1",
+    "react-beautiful-dnd": "^12.2.0",
+    "react-linkify": "^1.0.0-alpha"
+  }
+}
