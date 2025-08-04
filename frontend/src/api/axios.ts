@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken, removeToken } from '../utils/token';
 
 const api = axios.create({
-  baseURL: 'http://13.233.151.248:3003'
+  baseURL: 'http://13.204.111.241:3003'
 });
 
 // Attach JWT to all requests

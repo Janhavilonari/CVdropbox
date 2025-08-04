@@ -32,8 +32,20 @@ const SignupPage: React.FC = () => {
     try {
       const response = await api.post('/api/auth/agency-signup', { name, email });
       setSuccess(response.data.message);
+      
+      // Store values before clearing for prefill
+      const userData = { name, email };
       setName('');
       setEmail('');
+      
+      // Redirect to login page after 2 seconds with user data
+      setTimeout(() => {
+        navigate('/login', { 
+          state: { 
+            prefillData: userData
+          } 
+        });
+      }, 2000);
     } catch (err: any) {
       setError(err.response?.data?.message || 'Signup failed');
     } finally {

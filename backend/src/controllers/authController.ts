@@ -65,7 +65,7 @@ export const signupAgency = async (req: Request, res: Response) => {
     }
     const existing = await User.findOne({ email });
     if (existing) {
-      return res.status(409).json({ message: 'Agency is already registered' });
+      return res.status(409).json({ message: 'Email is already registered' });
     }
     const hashed = await bcrypt.hash(password, 10);
     const user = await User.create({ name, email, password: hashed, role: 'agency' });
@@ -134,7 +134,7 @@ export const createAgency = async (req: Request, res: Response) => {
     }
     const existing = await User.findOne({ email });
     if (existing) {
-      return res.status(409).json({ message: 'Agency is already registered' });
+      return res.status(409).json({ message: 'Email is already registered' });
     }
     // Generate a unique, permanent password for the agency
     const password = crypto.randomBytes(6).toString('hex').toUpperCase(); // Generate ONCE
@@ -184,7 +184,7 @@ export const initiateSignup = async (req: Request, res: Response) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(409).json({ message: 'Agency is already registered' });
+      return res.status(409).json({ message: 'Email is already registered' });
     }
 
     // Generate 6-digit OTP
@@ -449,7 +449,7 @@ export const agencySignup = async (req: Request, res: Response) => {
     }
     const existing = await User.findOne({ email });
     if (existing) {
-      return res.status(409).json({ message: 'Agency is already registered.' });
+      return res.status(409).json({ message: 'Email is already registered.' });
     }
     // Generate random password
     const password = crypto.randomBytes(8).toString('hex');

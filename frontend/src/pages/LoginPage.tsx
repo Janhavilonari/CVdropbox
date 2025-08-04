@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Card, CardContent, Typography, TextField, Button, CircularProgress, InputAdornment, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, Alert } from '@mui/material';
 import api from '../api/axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { setToken } from '../utils/token';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -25,6 +25,16 @@ const LoginPage: React.FC = () => {
   const [forgotSuccess, setForgotSuccess] = useState('');
   const [showChangePassword, setShowChangePassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Pre-fill form with data from signup if available
+  useEffect(() => {
+    const prefillData = location.state?.prefillData;
+    if (prefillData) {
+      setName(prefillData.name || '');
+      setEmail(prefillData.email || '');
+    }
+  }, [location.state]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
